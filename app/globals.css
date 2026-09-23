@@ -178,16 +178,69 @@ body {
    Scoped Red Development Theme (/development)
    ========================================================================== */
 .development-theme {
-  background-color: #07080c;
+  background-color: #060509;
   color: #f4f4f7;
   min-height: 100vh;
 }
 
 .development-theme .dev-grid-bg {
   background-image: 
-    linear-gradient(rgba(225, 29, 72, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(225, 29, 72, 0.045) 1px, transparent 1px);
-  background-size: 44px 44px;
+    linear-gradient(rgba(225, 29, 72, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(225, 29, 72, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* 3D Crimson Spheres from Reference Graphic */
+.development-theme .sphere-crimson-bright {
+  background: radial-gradient(circle at 45% 25%, #ff2b56 0%, #e11d48 35%, #9f1239 65%, #3d0511 88%, #100104 100%);
+  box-shadow: 
+    inset -15px -20px 40px rgba(0, 0, 0, 0.9),
+    inset 10px 10px 30px rgba(255, 120, 150, 0.35),
+    0 25px 65px -10px rgba(225, 29, 72, 0.45);
+  border-radius: 50%;
+}
+
+.development-theme .sphere-crimson-dark {
+  background: radial-gradient(circle at 35% 30%, #be123c 0%, #881337 40%, #450a17 70%, #150205 100%);
+  box-shadow: 
+    inset -20px -25px 50px rgba(0, 0, 0, 0.95),
+    0 30px 80px -10px rgba(136, 19, 55, 0.6);
+  border-radius: 50%;
+}
+
+.development-theme .sphere-crimson-ambient {
+  background: radial-gradient(circle at 40% 30%, rgba(244, 63, 94, 0.75) 0%, rgba(190, 18, 60, 0.5) 45%, rgba(76, 5, 25, 0.2) 80%, transparent 100%);
+  border-radius: 50%;
+}
+
+/* Ultra Frosted Glassmorphism Card Effect (Matching Reference Graphic) */
+.development-theme .glass-morphic-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 55%, rgba(225, 29, 72, 0.08) 100%);
+  backdrop-filter: blur(36px) saturate(180%);
+  -webkit-backdrop-filter: blur(36px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 
+    0 35px 80px -15px rgba(0, 0, 0, 0.85),
+    0 0 50px -10px rgba(225, 29, 72, 0.3),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.45),
+    inset 0 -1px 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.development-theme .glass-morphic-card-subtle {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(18, 10, 15, 0.75) 100%);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 15px 40px -10px rgba(0, 0, 0, 0.6);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.development-theme .glass-morphic-card-subtle:hover {
+  border-color: rgba(244, 63, 94, 0.5);
+  box-shadow: 
+    0 20px 50px -10px rgba(0, 0, 0, 0.8),
+    0 0 35px -5px rgba(225, 29, 72, 0.3);
+  transform: translateY(-3px);
 }
 
 .development-theme .dev-card-glow {

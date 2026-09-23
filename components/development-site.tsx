@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 
 import { SiteNav } from "@/components/site-nav";
+import { GlassGraphicCard } from "@/components/glass-graphic-card";
 import {
   coCurricularActivities,
   contactDetails,
@@ -59,12 +60,15 @@ export function DevelopmentSite() {
 
       <SiteNav />
 
-      {/* Background ambient lighting */}
+      {/* Background ambient lighting with 3D Spherical Graphics (Matching User Graphic) */}
       <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-        <div className="absolute -top-40 right-[-10%] h-[36rem] w-[36rem] rounded-full bg-rose-600/10 blur-[130px]" />
-        <div className="absolute top-[35%] -left-32 h-[32rem] w-[32rem] rounded-full bg-red-800/10 blur-[140px]" />
-        <div className="absolute bottom-20 right-[5%] h-[28rem] w-[28rem] rounded-full bg-rose-900/10 blur-[120px]" />
-        <div className="dev-grid-bg absolute inset-0 opacity-40" />
+        {/* Large Top 3D Sphere */}
+        <div className="sphere-crimson-dark absolute -top-40 right-[-10%] h-[38rem] w-[38rem] opacity-60 blur-[1px]" />
+        {/* Mid-Left Glowing 3D Sphere */}
+        <div className="sphere-crimson-bright absolute top-[35%] -left-36 h-[34rem] w-[34rem] opacity-50 blur-[2px]" />
+        {/* Bottom Glowing Ambient Orb */}
+        <div className="sphere-crimson-ambient absolute bottom-16 right-[5%] h-[32rem] w-[32rem] blur-[80px] opacity-70" />
+        <div className="dev-grid-bg absolute inset-0 opacity-35" />
       </div>
 
       <main className="relative z-10 pt-24 md:pt-28">
@@ -179,68 +183,14 @@ export function DevelopmentSite() {
                 </div>
               </motion.div>
 
-              {/* Right Column: Interactive Terminal & Spec Showcase */}
+              {/* Right Column: Crimson Spheres & Frosted Glassmorphism Showcase (From User Graphic) */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.96 }}
+                initial={{ opacity: 0, scale: 0.94 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
-                className="relative"
+                className="relative flex items-center justify-center lg:justify-end"
               >
-                {/* Outer Glow frame */}
-                <div className="relative rounded-2xl border border-rose-500/30 bg-[#0e1017]/95 p-6 shadow-2xl backdrop-blur-xl dev-card-glow">
-                  {/* Terminal Header */}
-                  <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                    <div className="flex items-center gap-2">
-                      <div className="h-3 w-3 rounded-full bg-rose-500/80" />
-                      <div className="h-3 w-3 rounded-full bg-amber-500/80" />
-                      <div className="h-3 w-3 rounded-full bg-emerald-500/80" />
-                      <span className="ml-2 font-mono text-xs text-zinc-400">
-                        saumitra@workspace:~
-                      </span>
-                    </div>
-                    <span className="rounded bg-rose-950/80 px-2 py-0.5 font-mono text-[0.68rem] font-bold text-rose-300">
-                      AI + DEV
-                    </span>
-                  </div>
-
-                  {/* Terminal Code Content */}
-                  <div className="mt-4 space-y-3 font-mono text-xs leading-relaxed text-zinc-300">
-                    <p className="text-zinc-500">// Developer Profile & Architecture Stack</p>
-                    <p>
-                      <span className="text-rose-400">const</span> developer = {"{"}
-                    </p>
-                    <div className="pl-4 space-y-1">
-                      <p>
-                        name: <span className="text-emerald-300">&quot;Saumitra Misra&quot;</span>,
-                      </p>
-                      <p>
-                        degree: <span className="text-emerald-300">&quot;B.Tech CSE, GLA University (2027)&quot;</span>,
-                      </p>
-                      <p>
-                        focus: [<span className="text-amber-300">&quot;Software Engineering&quot;</span>, <span className="text-amber-300">&quot;Vertex AI & Gemini&quot;</span>, <span className="text-amber-300">&quot;ML Models&quot;</span>],
-                      </p>
-                      <p>
-                        languages: [<span className="text-rose-300">&quot;Java&quot;</span>, <span className="text-rose-300">&quot;Python&quot;</span>, <span className="text-rose-300">&quot;TypeScript&quot;</span>, <span className="text-rose-300">&quot;C&quot;</span>],
-                      </p>
-                      <p>
-                        databases: [<span className="text-rose-300">&quot;MySQL&quot;</span>, <span className="text-rose-300">&quot;MongoDB&quot;</span>],
-                      </p>
-                      <p>
-                        certifications: <span className="text-cyan-300">8+ Skill Badges (GCP, AWS, Mongo)</span>,
-                      </p>
-                      <p>
-                        availability: <span className="text-emerald-400">&quot;Open to Internships & Software Roles&quot;</span>
-                      </p>
-                    </div>
-                    <p>{"};"}</p>
-                    <div className="pt-2 border-t border-white/5 flex items-center justify-between text-[0.72rem] text-zinc-400">
-                      <span className="flex items-center gap-1.5 text-rose-300">
-                        <Terminal className="h-3.5 w-3.5" /> status: ready_to_compile
-                      </span>
-                      <span>Mathura / Prayagraj, IN</span>
-                    </div>
-                  </div>
-                </div>
+                <GlassGraphicCard />
               </motion.div>
             </div>
           </div>

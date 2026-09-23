@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 
 import { SiteNav } from "@/components/site-nav";
+import { AuraBeigeGraphic } from "@/components/aura-beige-graphic";
 import {
   cloudArchitectureLayers,
   dbCertifications,
@@ -59,11 +60,18 @@ export function DatabaseCloudSite() {
         <div className="absolute bottom-10 right-[15%] h-[24rem] w-[24rem] rounded-full bg-amber-100/40 blur-[100px]" />
       </div>
 
-      <main className="relative z-10 pt-24 md:pt-28">
+      <main className="relative z-10 pt-20 md:pt-24">
         {/* ====================================================================
-            HERO SECTION
+            EDITORIAL STREETWEAR GRAPHIC CANVAS (Direct User Reference Graphic)
             ==================================================================== */}
-        <section className="px-5 py-12 md:px-12 lg:px-20 lg:py-20 overflow-hidden">
+        <section className="px-4 py-6 md:px-8 lg:px-12">
+          <AuraBeigeGraphic />
+        </section>
+
+        {/* ====================================================================
+            HERO SECTION: DETAILED TECHNICAL IDENTITY
+            ==================================================================== */}
+        <section className="px-5 py-12 md:px-12 lg:px-20 lg:py-16 overflow-hidden">
           <div className="mx-auto max-w-7xl">
             {/* Top Sub-Header Bar */}
             <div className="flex items-center justify-between text-[0.68rem] font-bold uppercase tracking-[0.16em] text-stone-700">
