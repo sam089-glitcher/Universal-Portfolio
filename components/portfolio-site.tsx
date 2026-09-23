@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 
 import { projects } from "@/components/data";
+import { SiteNav } from "@/components/site-nav";
 
 const posterProjects = projects.slice(0, 4);
 const socialProjects = [projects[8], projects[1], projects[7], projects[2]];
@@ -53,6 +54,7 @@ export function PortfolioSite() {
 
   return (
     <>
+      <SiteNav />
       <motion.div
         className="fixed left-0 top-0 z-50 h-1 bg-lime"
         style={{ width: progressWidth }}
@@ -61,7 +63,7 @@ export function PortfolioSite() {
         <section id="home" className="deck-page deck-dark isolate overflow-hidden">
           <div className="noise absolute inset-0 opacity-25" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_74%_36%,rgba(203,244,39,0.2),transparent_20rem)]" />
-          <div className="relative z-10 grid min-h-screen gap-8 p-8 md:p-12 lg:grid-cols-[1.15fr_0.85fr]">
+          <div className="relative z-10 grid min-h-screen gap-8 px-8 py-8 pt-24 md:px-12 md:py-12 md:pt-28 lg:grid-cols-[1.15fr_0.85fr]">
             <div className="flex flex-col justify-between">
               <div className="flex items-center justify-between text-[0.68rem] font-bold uppercase tracking-[0.16em] text-cream/80">
                 <span>Visual Designer</span>
