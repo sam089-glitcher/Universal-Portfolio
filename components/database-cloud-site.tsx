@@ -360,7 +360,7 @@ export function DatabaseCloudSite() {
                     key={concept.id}
                     onClick={() => setActiveSqlId(concept.id)}
                     className={cn(
-                      "w-full text-left rounded-xl p-4.5 transition-all border",
+                      "w-full text-left rounded-xl p-4 sm:p-5 transition-all border",
                       activeSqlId === concept.id
                         ? "border-amber-700 bg-white shadow-md db-card-shadow"
                         : "border-stone-300/80 bg-white/60 hover:bg-white hover:border-stone-400",
@@ -374,8 +374,10 @@ export function DatabaseCloudSite() {
                         <span className="flex h-2 w-2 rounded-full bg-amber-600" />
                       )}
                     </div>
-                    <h3 className="mt-1 text-base font-bold text-stone-900">{concept.title}</h3>
-                    <p className="mt-1 text-xs text-stone-600 line-clamp-2">
+                    <h3 className="mt-1.5 text-base font-bold text-stone-900 leading-snug">
+                      {concept.title}
+                    </h3>
+                    <p className="mt-1.5 text-xs text-stone-600 leading-relaxed line-clamp-2">
                       {concept.explanation}
                     </p>
                   </button>
