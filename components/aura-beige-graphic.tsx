@@ -1,12 +1,89 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
-import { Sparkles, Terminal, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, RotateCw, Play, Pause } from "lucide-react";
+
+const ROTATION_FRAMES = [
+  { angle: 0, label: "Front (0°)", tag: "0°", src: "/Assets/techwear_0.jpg" },
+  { angle: 45, label: "Front-Right (45°)", tag: "45°", src: "/Assets/techwear_45.jpg" },
+  { angle: 90, label: "Right Profile (90°)", tag: "90°", src: "/Assets/techwear_90.jpg" },
+  { angle: 135, label: "Back-Right (135°)", tag: "135°", src: "/Assets/techwear_135.jpg" },
+  { angle: 180, label: "Back (180°)", tag: "180°", src: "/Assets/techwear_180.jpg" },
+  { angle: 225, label: "Back-Left (225°)", tag: "225°", src: "/Assets/techwear_225.jpg" },
+  { angle: 270, label: "Left Profile (270°)", tag: "270°", src: "/Assets/techwear_270.jpg" },
+  { angle: 315, label: "Front-Left (315°)", tag: "315°", src: "/Assets/techwear_315.jpg" },
+];
 
 export function AuraBeigeGraphic() {
   const [mode, setMode] = useState<"aura" | "data">("aura");
+  const [frameIndex, setFrameIndex] = useState<number>(0);
+  const [isAutoSpinning, setIsAutoSpinning] = useState<boolean>(false);
+  const [isDragging, setIsDragging] = useState<boolean>(false);
+
+  const dragStartXRef = useRef<number>(0);
+  const startFrameRef = useRef<number>(0);
+
+  // Auto-spin turntable timer
+  useEffect(() => {
+    if (!isAutoSpinning || isDragging) return;
+    const interval = setInterval(() => {
+      setFrameIndex((prev) => (prev + 1) % ROTATION_FRAMES.length);
+    }, 450);
+    return () => clearInterval(interval);
+  }, [isAutoSpinning, isDragging]);
+
+  // Mouse & Touch Drag-to-Rotate handlers
+  const handlePointerDown = (clientX: number) => {
+    setIsDragging(true);
+    dragStartXRef.current = clientX;
+    startFrameRef.current = frameIndex;
+  };
+
+  const handlePointerMove = useCallback(
+    (clientX: number) => {
+      if (!isDragging) return;
+      const deltaX = clientX - dragStartXRef.current;
+      const pixelsPerFrame = 28; // drag sensitivity
+      const frameDelta = Math.floor(deltaX / pixelsPerFrame);
+      const totalFrames = ROTATION_FRAMES.length;
+      const rawIndex = (startFrameRef.current + frameDelta) % totalFrames;
+      const newIndex = (rawIndex + totalFrames) % totalFrames;
+      setFrameIndex(newIndex);
+    },
+    [isDragging],
+  );
+
+  const handlePointerUp = useCallback(() => {
+    setIsDragging(false);
+  }, []);
+
+  // Global listeners while dragging
+  useEffect(() => {
+    if (!isDragging) return;
+
+    const onMouseMove = (e: MouseEvent) => handlePointerMove(e.clientX);
+    const onMouseUp = () => handlePointerUp();
+    const onTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) handlePointerMove(e.touches[0].clientX);
+    };
+    const onTouchEnd = () => handlePointerUp();
+
+    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("mouseup", onMouseUp);
+    window.addEventListener("touchmove", onTouchMove);
+    window.addEventListener("touchend", onTouchEnd);
+
+    return () => {
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mouseup", onMouseUp);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchend", onTouchEnd);
+    };
+  }, [isDragging, handlePointerMove, handlePointerUp]);
+
+  const currentFrame = ROTATION_FRAMES[frameIndex];
 
   return (
     <div className="relative mx-auto w-full max-w-7xl px-3 sm:px-6">
@@ -99,9 +176,9 @@ export function AuraBeigeGraphic() {
         </div>
 
         {/* ====================================================================
-            MONUMENTAL SPLIT CENTERPIECE & CENTRAL TECHWEAR FIGURE
+            MONUMENTAL SPLIT CENTERPIECE & CENTRAL 360° TECHWEAR TURNTABLE
             ==================================================================== */}
-        <div className="relative z-10 mt-6 sm:mt-10 grid min-h-[380px] sm:min-h-[460px] md:min-h-[500px] items-center">
+        <div className="relative z-10 mt-6 sm:mt-10 flex flex-col items-center justify-center">
           {/* Background Split Words ("Aura store" or "Data cloud") */}
           <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-between select-none pointer-events-none px-2 sm:px-6">
             <span className="font-sans font-black tracking-tighter text-stone-950 text-5xl sm:text-7xl md:text-8xl lg:text-[9.5rem] xl:text-[11rem] leading-none opacity-95">
@@ -112,22 +189,118 @@ export function AuraBeigeGraphic() {
             </span>
           </div>
 
-          {/* Central Full-Body Techwear Figure */}
-          <motion.div
-            animate={{ y: [-4, 4, -4] }}
-            transition={{ repeat: Infinity, duration: 7, ease: "easeInOut" }}
-            className="relative z-10 mx-auto flex items-center justify-center py-2"
-          >
-            <div className="relative h-[340px] w-[240px] sm:h-[440px] sm:w-[310px] md:h-[500px] md:w-[350px]">
-              <Image
-                src="/Assets/aura_techwear_hero.jpg"
-                alt="Editorial Techwear Lookbook"
-                fill
-                priority
-                className="object-contain mix-blend-multiply drop-shadow-[0_25px_35px_rgba(0,0,0,0.35)] filter contrast-105"
-              />
+          {/* 360 Interactive Model Turntable Stage */}
+          <div className="relative z-10 flex flex-col items-center">
+            {/* Interactive Model Display with Drag-to-Rotate */}
+            <div
+              onMouseDown={(e) => handlePointerDown(e.clientX)}
+              onTouchStart={(e) => {
+                if (e.touches.length > 0) handlePointerDown(e.touches[0].clientX);
+              }}
+              className={`group relative select-none touch-pan-y ${
+                isDragging ? "cursor-grabbing" : "cursor-grab"
+              }`}
+              title="Click and drag horizontally to rotate 360°"
+            >
+              {/* Turntable Platform Shadow & Compass Base Ring */}
+              <div className="pointer-events-none absolute -bottom-3 left-1/2 h-10 w-[220px] sm:w-[280px] md:w-[320px] -translate-x-1/2 rounded-[50%] bg-stone-900/10 blur-[8px]" />
+              <div className="pointer-events-none absolute -bottom-1 left-1/2 h-7 w-[200px] sm:w-[260px] md:w-[300px] -translate-x-1/2 rounded-[50%] border border-stone-800/30 bg-stone-900/5">
+                {/* Rotating tick mark on platform */}
+                <div
+                  className="absolute inset-0 rounded-[50%] transition-transform duration-200"
+                  style={{ transform: `rotate(${currentFrame.angle}deg)` }}
+                >
+                  <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 h-1.5 w-1.5 rounded-full bg-amber-700" />
+                </div>
+              </div>
+
+              {/* Image Stack for 0-latency instant 360 rotation */}
+              <div className="relative h-[340px] w-[240px] sm:h-[440px] sm:w-[310px] md:h-[500px] md:w-[350px]">
+                {ROTATION_FRAMES.map((frame, idx) => (
+                  <div
+                    key={frame.angle}
+                    className={`absolute inset-0 transition-opacity duration-150 ${
+                      idx === frameIndex ? "opacity-100 z-10" : "opacity-0 pointer-events-none z-0"
+                    }`}
+                  >
+                    <Image
+                      src={frame.src}
+                      alt={`360 Techwear Lookbook - ${frame.label}`}
+                      fill
+                      priority={idx === 0 || idx === 4}
+                      loading="eager"
+                      className="object-contain mix-blend-multiply drop-shadow-[0_25px_35px_rgba(0,0,0,0.35)] filter contrast-105"
+                      draggable={false}
+                    />
+                  </div>
+                ))}
+              </div>
+
+              {/* Drag overlay badge visible on hover / drag */}
+              <div className="pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full border border-stone-800/40 bg-white/80 px-3 py-1 font-mono text-[0.62rem] font-bold uppercase tracking-wider text-stone-900 opacity-0 shadow-sm backdrop-blur transition-opacity group-hover:opacity-100">
+                {isDragging ? `Rotating ${currentFrame.tag}` : "Drag horizontally to rotate"}
+              </div>
             </div>
-          </motion.div>
+
+            {/* 360 Control Bar */}
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-2 font-mono text-[0.68rem]">
+              {/* Play / Pause Auto-spin Button */}
+              <button
+                type="button"
+                onClick={() => setIsAutoSpinning((v) => !v)}
+                className={`flex items-center gap-1.5 rounded-full border px-3 py-1 transition ${
+                  isAutoSpinning
+                    ? "border-amber-700 bg-amber-700 text-white shadow-sm"
+                    : "border-stone-800/60 bg-white/80 text-stone-900 hover:bg-stone-900 hover:text-white"
+                }`}
+                title={isAutoSpinning ? "Pause auto-rotation" : "Auto-spin 360°"}
+              >
+                {isAutoSpinning ? (
+                  <>
+                    <Pause className="h-3 w-3" />
+                    <span className="font-bold tracking-wider">PAUSE</span>
+                  </>
+                ) : (
+                  <>
+                    <RotateCw className="h-3 w-3" />
+                    <span className="font-bold tracking-wider">360° SPIN</span>
+                  </>
+                )}
+              </button>
+
+              {/* Cardinal Angle Quick Jumps */}
+              <div className="flex items-center gap-1 rounded-full border border-stone-800/30 bg-white/60 p-0.5 backdrop-blur">
+                {[
+                  { index: 0, label: "0° Front" },
+                  { index: 2, label: "90°" },
+                  { index: 4, label: "180° Back" },
+                  { index: 6, label: "270°" },
+                ].map((item) => (
+                  <button
+                    key={item.index}
+                    type="button"
+                    onClick={() => {
+                      setIsAutoSpinning(false);
+                      setFrameIndex(item.index);
+                    }}
+                    className={`rounded-full px-2.5 py-0.5 font-bold transition ${
+                      frameIndex === item.index
+                        ? "bg-stone-900 text-amber-100"
+                        : "text-stone-700 hover:text-stone-950"
+                    }`}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+
+              {/* Angle Tag Indicator */}
+              <div className="flex items-center gap-1 rounded-full border border-stone-800/40 bg-stone-900 px-2.5 py-1 text-amber-300">
+                <span className="h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse" />
+                <span className="font-bold">{currentFrame.angle}°</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* ====================================================================
