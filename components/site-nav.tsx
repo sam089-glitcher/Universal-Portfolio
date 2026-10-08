@@ -70,14 +70,16 @@ export function SiteNav({ projectPage = false }: SiteNavProps) {
               <Link
                 key={item.href}
                 href={item.href}
+                aria-current={active ? "page" : undefined}
                 className={cn(
-                  "relative rounded-lg border border-transparent px-3.5 py-1.5 transition-all duration-200",
+                  "relative flex items-center gap-1.5 rounded-lg border px-3.5 py-1.5 transition-all duration-200",
                   active
                     ? cn(getActiveStyles(item.href), "font-black")
-                    : "text-muted-foreground hover:border-white/10 hover:bg-white/5 hover:text-foreground",
+                    : "border-transparent text-zinc-400 hover:border-white/15 hover:bg-white/5 hover:text-white",
                 )}
               >
-                {item.label}
+                {active && <span className="h-1.5 w-1.5 rounded-full bg-current shadow-[0_0_6px_currentColor]" />}
+                <span>{item.label}</span>
               </Link>
             );
           })}
