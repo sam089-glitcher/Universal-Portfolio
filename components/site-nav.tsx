@@ -85,7 +85,7 @@ export function SiteNav({ projectPage = false }: SiteNavProps) {
           <div className="mx-1 h-4 w-px bg-white/15" />
 
           <Link
-            href="#contact"
+            href={pathname === "/projects" ? "/#contact" : "#contact"}
             className="rounded-lg border border-white/10 px-3.5 py-1.5 text-muted-foreground transition hover:border-white/25 hover:bg-white/5 hover:text-foreground"
           >
             Contact
@@ -159,7 +159,7 @@ export function SiteNav({ projectPage = false }: SiteNavProps) {
 
             <div className="grid grid-cols-2 gap-2 pt-1 font-bebas text-[1.05rem] tracking-[0.06em]">
               <Link
-                href="#contact"
+                href={pathname === "/projects" ? "/#contact" : "#contact"}
                 onClick={() => setOpen(false)}
                 className="flex items-center justify-center rounded-md border border-white/10 bg-white/5 py-2 text-center text-cream hover:bg-white/10"
               >

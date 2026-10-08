@@ -119,6 +119,7 @@ export function ProjectArchive() {
                     <button
                       key={cat}
                       type="button"
+                      aria-pressed={active}
                       onClick={() => setActiveCategory(cat)}
                       className={cn(
                         "rounded-full px-3.5 py-1.5 text-xs font-medium transition-all",
@@ -150,11 +151,24 @@ export function ProjectArchive() {
               </div>
             </div>
 
-            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-              {filteredProjects.map((project) => (
-                <ProjectCard {...project} key={project.title} />
-              ))}
-            </div>
+            {filteredProjects.length > 0 ? (
+              <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                {filteredProjects.map((project) => (
+                  <ProjectCard {...project} key={project.title} />
+                ))}
+              </div>
+            ) : (
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-12 text-center">
+                <p className="text-base text-zinc-300">No projects found in this category.</p>
+                <button
+                  type="button"
+                  onClick={() => setActiveCategory("All")}
+                  className="mt-4 rounded-xl bg-lime px-5 py-2.5 text-xs font-bold text-black hover:bg-lime/90 transition"
+                >
+                  View All Projects
+                </button>
+              </div>
+            )}
           </div>
         </section>
       </main>
