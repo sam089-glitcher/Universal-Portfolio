@@ -35,28 +35,30 @@ export function GlassGraphicCard() {
 
   return (
     <div className="relative mx-auto flex w-full max-w-[480px] flex-col items-center">
-      {/* Switcher Toggle Pill */}
-      <div className="mb-4 flex items-center gap-1 rounded-full border border-white/15 bg-black/40 p-1 backdrop-blur-xl shadow-lg">
+      {/* Prominent Switcher Toggle Pill */}
+      <div className="mb-5 flex items-center gap-1.5 rounded-full border border-white/20 bg-black/50 p-1.5 backdrop-blur-xl shadow-xl">
         <button
+          type="button"
           onClick={() => setViewMode("graphic")}
-          className={`flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-bold transition-all ${
+          className={`flex items-center gap-2 rounded-full px-5 py-2 text-xs sm:text-sm font-bold transition-all ${
             viewMode === "graphic"
-              ? "bg-gradient-to-r from-rose-600 to-red-600 text-white shadow-md shadow-rose-600/40"
-              : "text-zinc-400 hover:text-white"
+              ? "bg-gradient-to-r from-rose-600 to-red-600 text-white shadow-lg shadow-rose-600/40"
+              : "text-zinc-300 hover:text-white"
           }`}
         >
-          <Sparkles className="h-3.5 w-3.5" />
+          <Sparkles className="h-4 w-4" />
           Glass Graphic
         </button>
         <button
+          type="button"
           onClick={() => setViewMode("terminal")}
-          className={`flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-bold transition-all ${
+          className={`flex items-center gap-2 rounded-full px-5 py-2 text-xs sm:text-sm font-bold transition-all ${
             viewMode === "terminal"
-              ? "bg-gradient-to-r from-rose-600 to-red-600 text-white shadow-md shadow-rose-600/40"
-              : "text-zinc-400 hover:text-white"
+              ? "bg-gradient-to-r from-rose-600 to-red-600 text-white shadow-lg shadow-rose-600/40"
+              : "text-zinc-300 hover:text-white"
           }`}
         >
-          <Terminal className="h-3.5 w-3.5" />
+          <Terminal className="h-4 w-4" />
           Terminal Spec
         </button>
       </div>
@@ -70,10 +72,6 @@ export function GlassGraphicCard() {
         className="relative flex h-[520px] w-full items-center justify-center overflow-hidden rounded-[2.5rem] p-4 sm:h-[560px]"
         style={{ perspective: 1000 }}
       >
-        {/* ====================================================================
-            3D SPHERICAL GRAPHICS (Directly Replicating Reference Image)
-            ==================================================================== */}
-
         {/* Sphere 1: Top-Right Deep Crimson Shaded Sphere */}
         <motion.div
           animate={{
@@ -97,12 +95,7 @@ export function GlassGraphicCard() {
         {/* Ambient Volumetric Red Glow Behind */}
         <div className="sphere-crimson-ambient pointer-events-none absolute inset-0 blur-[60px] opacity-60" />
 
-        {/* Soft Radial Vignette Border */}
-        <div className="pointer-events-none absolute inset-0 rounded-[2.5rem] ring-1 ring-inset ring-white/10" />
-
-        {/* ====================================================================
-            THE GLASSMORPHIC FLOATING CARD
-            ==================================================================== */}
+        {/* Dynamic Card Display */}
         <AnimatePresence mode="wait">
           {viewMode === "graphic" ? (
             <motion.div
@@ -113,63 +106,57 @@ export function GlassGraphicCard() {
                 scale: 1,
                 rotateX: isHovered ? mousePos.y * -14 : 0,
                 rotateY: isHovered ? mousePos.x * 14 : 0,
-                y: isHovered ? 0 : [-5, 5, -5],
               }}
               exit={{ opacity: 0, scale: 0.94 }}
-              transition={{
-                y: { repeat: Infinity, duration: 6, ease: "easeInOut" },
-                duration: 0.35,
-              }}
-              className="glass-morphic-card relative z-10 flex h-[460px] w-full max-w-[370px] flex-col justify-between rounded-[2.5rem] p-7 text-white sm:h-[490px] sm:p-8"
-              style={{
-                transformStyle: "preserve-3d",
-              }}
+              transition={{ duration: 0.35 }}
+              className="glass-morphic-card relative z-10 flex h-[460px] w-full max-w-[370px] flex-col justify-between rounded-[2.5rem] p-7 text-white sm:h-[490px]"
+              style={{ transformStyle: "preserve-3d" }}
             >
-              {/* Top Row: Subtitles exactly like the graphic ("Glass morphic effect" / "Let's create") */}
-              <div className="flex items-start justify-between text-xs tracking-tight">
-                <div>
-                  <span className="block text-[0.68rem] font-bold uppercase tracking-[0.16em] text-white/70">
-                    Glass
-                  </span>
-                  <span className="block text-[0.68rem] font-medium tracking-wider text-white/60">
-                    morphic effect
-                  </span>
-                </div>
-
-                <div className="flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.08] px-3 py-1 backdrop-blur-md">
+              {/* Top Row: Interactive Status Badge & Live Badge */}
+              <div className="flex items-center justify-between">
+                <span className="flex items-center gap-1.5 rounded-full border border-rose-500/30 bg-rose-950/70 px-3 py-1 text-xs font-bold text-rose-300">
                   <span className="relative flex h-2 w-2">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-rose-400 opacity-75" />
                     <span className="relative inline-flex h-2 w-2 rounded-full bg-rose-500" />
                   </span>
-                  <span className="text-[0.68rem] font-semibold tracking-wide text-white/90">
-                    Let&apos;s create
-                  </span>
-                </div>
+                  ACTIVE DEV
+                </span>
+                <span className="font-mono text-xs text-white/70">SPEC 2026</span>
               </div>
 
-              {/* Center Hero Statement: Bold White Typography */}
-              <div className="my-auto py-2">
-                <p className="text-[2.2rem] font-extrabold leading-[1.08] tracking-tight text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)] sm:text-[2.65rem]">
-                  Hello,
-                  <br />
-                  I&apos;m a
-                  <br />
-                  <span
-                    onClick={() => setRoleIndex((prev) => (prev + 1) % roles.length)}
-                    className="cursor-pointer text-white underline decoration-rose-500/60 decoration-wavy underline-offset-4 transition hover:text-rose-100 hover:decoration-rose-400"
-                    title="Click to cycle specializations"
-                  >
-                    {roles[roleIndex].title}
-                  </span>
+              {/* Center Content: Role Carousel */}
+              <div className="my-auto py-4">
+                <p className="font-mono text-xs uppercase tracking-widest text-rose-300">
+                  Engineering Track
                 </p>
 
-                <p className="mt-3 text-xs font-semibold tracking-wide text-rose-200/90 drop-shadow">
-                  {roles[roleIndex].sub}
-                </p>
+                {/* Role Titles with Quick Click to Cycle */}
+                <div
+                  onClick={() => setRoleIndex((prev) => (prev + 1) % roles.length)}
+                  className="group/role mt-2 cursor-pointer select-none"
+                  title="Click to toggle specialization focus"
+                >
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={roles[roleIndex].title}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8 }}
+                      transition={{ duration: 0.25 }}
+                    >
+                      <h3 className="text-4xl font-black uppercase tracking-tight text-white drop-shadow-md transition group-hover/role:text-rose-200 sm:text-5xl">
+                        {roles[roleIndex].title}
+                      </h3>
+                      <p className="mt-1 text-sm font-semibold text-zinc-300">
+                        {roles[roleIndex].sub}
+                      </p>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
 
                 {/* Micro Pill for Current Domain */}
-                <div className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-black/30 px-3 py-1 text-[0.68rem] font-medium text-white/80 backdrop-blur-md">
-                  <Code2 className="h-3 w-3 text-rose-400" />
+                <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/40 px-3.5 py-1 text-xs font-medium text-white/90 backdrop-blur-md">
+                  <Code2 className="h-3.5 w-3.5 text-rose-400" />
                   <span>{roles[roleIndex].tag}</span>
                 </div>
               </div>
@@ -186,8 +173,8 @@ export function GlassGraphicCard() {
                   <span>@SaumitraMisra</span>
                 </a>
 
-                <span className="text-[0.68rem] font-medium uppercase tracking-wider text-white/50">
-                  CSE &bull; 2027
+                <span className="text-xs font-medium uppercase tracking-wider text-white/70">
+                  CSE • 2027
                 </span>
               </div>
             </motion.div>
@@ -207,17 +194,17 @@ export function GlassGraphicCard() {
                     <div className="h-2.5 w-2.5 rounded-full bg-rose-500/80" />
                     <div className="h-2.5 w-2.5 rounded-full bg-amber-500/80" />
                     <div className="h-2.5 w-2.5 rounded-full bg-emerald-500/80" />
-                    <span className="ml-2 font-mono text-[0.65rem] text-zinc-300">
+                    <span className="ml-2 font-mono text-xs text-zinc-300">
                       saumitra@workspace:~
                     </span>
                   </div>
-                  <span className="rounded-full bg-rose-950/80 border border-rose-500/30 px-2 py-0.5 font-mono text-[0.62rem] font-bold text-rose-300">
+                  <span className="rounded-full bg-rose-950/80 border border-rose-500/30 px-2.5 py-0.5 font-mono text-xs font-bold text-rose-300">
                     AI + DEV
                   </span>
                 </div>
 
                 {/* Code Body */}
-                <div className="mt-3 space-y-2 font-mono text-[0.72rem] leading-relaxed text-zinc-200">
+                <div className="mt-3 space-y-2 font-mono text-xs leading-relaxed text-zinc-200">
                   <p className="text-zinc-400">// Verified Architecture Stack</p>
                   <p>
                     <span className="text-rose-400">const</span> engineer = {"{"}
@@ -251,15 +238,15 @@ export function GlassGraphicCard() {
 
               {/* Terminal Footer */}
               <div className="border-t border-white/10 pt-3">
-                <div className="flex items-center justify-between text-[0.68rem] text-zinc-300">
-                  <span className="flex items-center gap-1 text-emerald-400">
-                    <CheckCircle2 className="h-3 w-3" /> compiled: true
+                <div className="flex items-center justify-between text-xs text-zinc-300">
+                  <span className="flex items-center gap-1 text-emerald-400 font-mono">
+                    <CheckCircle2 className="h-3.5 w-3.5" /> compiled: true
                   </span>
                   <a
                     href={contactDetails.github}
                     target="_blank"
                     rel="noreferrer"
-                    className="font-mono text-rose-300 hover:underline"
+                    className="font-mono text-xs text-rose-300 hover:underline"
                   >
                     sam089-glitcher
                   </a>
@@ -270,7 +257,7 @@ export function GlassGraphicCard() {
         </AnimatePresence>
       </div>
 
-      <p className="mt-3 text-center text-[0.72rem] text-zinc-400">
+      <p className="mt-3 text-center text-xs text-zinc-400">
         Interactive 3D Glassmorphism Graphic &bull; Hover or toggle to explore
       </p>
     </div>

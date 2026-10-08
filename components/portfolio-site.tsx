@@ -11,14 +11,16 @@ import {
   MapPin,
   Phone,
   Sparkles,
+  CheckCircle2,
 } from "lucide-react";
 
-import { projects } from "@/components/data";
+import { projects, stats } from "@/components/data";
 import { SiteNav } from "@/components/site-nav";
 
-const posterProjects = projects.slice(0, 4);
-const socialProjects = [projects[8], projects[1], projects[7], projects[2]];
-const uiProjects = [projects[7], projects[8], projects[4], projects[11]];
+// Distinct project subsets per category - zero duplication across sections
+const posterProjects = [projects[0], projects[4], projects[7], projects[8]];
+const socialProjects = [projects[2], projects[1], projects[5], projects[11]];
+const uiProjects = [projects[6], projects[9], projects[10], projects[3]];
 const tShirtProjects = [projects[3], projects[9]];
 
 function PageNumber({ children, dark = false }: { children: string; dark?: boolean }) {
@@ -34,7 +36,7 @@ function WorkThumb({ project, tall = false }: { project: typeof projects[number]
     <Link
       href={project.href}
       target="_blank"
-      className={tall ? "work-thumb h-[21rem]" : "work-thumb h-[17rem]"}
+      className={tall ? "work-thumb h-[20rem] rounded-xl overflow-hidden" : "work-thumb h-[18rem] rounded-xl overflow-hidden"}
     >
       <Image
         src={project.image}
@@ -43,7 +45,7 @@ function WorkThumb({ project, tall = false }: { project: typeof projects[number]
         sizes="(min-width: 1024px) 20vw, 50vw"
         className="object-cover transition duration-500 group-hover:scale-105"
       />
-      <span>{project.title}</span>
+      <span className="text-xs font-semibold">{project.title}</span>
     </Link>
   );
 }
@@ -60,14 +62,20 @@ export function PortfolioSite() {
         style={{ width: progressWidth }}
       />
       <main className="bg-paper text-ink">
+        {/* ====================================================================
+            HERO SECTION
+            ==================================================================== */}
         <section id="home" className="deck-page deck-dark isolate overflow-hidden">
           <div className="noise absolute inset-0 opacity-25" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_74%_36%,rgba(203,244,39,0.2),transparent_20rem)]" />
           <div className="relative z-10 grid min-h-screen gap-8 px-8 py-8 pt-24 md:px-12 md:py-12 md:pt-28 lg:grid-cols-[1.15fr_0.85fr]">
             <div className="flex flex-col justify-between">
-              <div className="flex items-center justify-between text-[0.68rem] font-bold uppercase tracking-[0.16em] text-cream/80">
-                <span>Visual Designer</span>
-                <span className="hidden items-center gap-2 md:flex">
+              <div className="flex items-center justify-between text-xs font-semibold tracking-wider text-cream/90">
+                <span className="flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-lime animate-pulse" />
+                  Visual &amp; Graphic Designer
+                </span>
+                <span className="hidden items-center gap-2 md:flex text-zinc-300">
                   <Globe2 className="h-4 w-4 text-lime" /> Based in India
                 </span>
               </div>
@@ -76,32 +84,33 @@ export function PortfolioSite() {
                 initial={{ opacity: 0, y: 28 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7 }}
-                className="py-12"
+                className="py-10"
               >
                 <h1 className="display-title max-w-[900px] text-cream">
                   Saumitra
                   <br />
                   Misra
                 </h1>
-                <div className="-mt-3 flex items-center gap-4 md:-mt-8">
+                {/* Non-overlapping signature placement */}
+                <div className="mt-2 flex items-center gap-4 md:mt-4">
                   <span className="h-px w-24 bg-lime" />
-                  <p className="signature text-5xl text-lime md:text-7xl">Portfolio</p>
+                  <p className="signature text-4xl text-lime md:text-6xl">Portfolio</p>
                 </div>
               </motion.div>
 
-              <div className="grid gap-8 text-[0.72rem] font-bold uppercase tracking-[0.12em] text-cream md:grid-cols-2">
-                <div className="border-l-2 border-lime pl-4">
-                  <p>Poster design</p>
-                  <p>Branding</p>
-                  <p>UI/UX design</p>
-                  <p>Social media</p>
-                  <p>Creative direction</p>
+              <div className="grid gap-8 text-xs font-semibold tracking-wider text-cream md:grid-cols-2">
+                <div className="border-l-2 border-lime pl-4 space-y-1.5">
+                  <p>Poster &amp; Editorial Design</p>
+                  <p>Branding &amp; Visual Identity</p>
+                  <p>UI/UX &amp; Frontend Design</p>
+                  <p>Social Media Creatives</p>
+                  <p>Creative Direction</p>
                 </div>
-                <div className="self-end text-left md:text-right">
-                  <p>Available for</p>
-                  <p>Freelance</p>
-                  <p>Collaboration</p>
-                  <p>Opportunities</p>
+                <div className="self-end text-left md:text-right space-y-1 text-zinc-300">
+                  <p className="text-zinc-400">Available For</p>
+                  <p className="text-white font-bold">Freelance Projects</p>
+                  <p className="text-white font-bold">Collaborations</p>
+                  <p className="text-lime font-bold">Design Opportunities</p>
                 </div>
               </div>
             </div>
@@ -124,66 +133,112 @@ export function PortfolioSite() {
           </div>
         </section>
 
+        {/* ====================================================================
+            ABOUT ME SECTION (Visually Differentiated from Hero)
+            ==================================================================== */}
         <section id="about" className="deck-page bg-paper">
-          <div className="grid min-h-screen gap-10 p-8 md:p-12 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="grid min-h-screen gap-10 p-8 md:p-12 lg:grid-cols-[1fr_1fr] items-center">
             <div className="flex flex-col justify-between">
-              <div className="flex justify-between">
+              <div className="flex items-center justify-between">
                 <PageNumber>01</PageNumber>
-                <p className="section-kicker text-ink">Introduction</p>
+                <p className="section-kicker text-ink">Background &amp; Philosophy</p>
               </div>
+
               <motion.div
                 initial={{ opacity: 0, y: 26 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.6 }}
+                className="mt-6"
               >
                 <h2 className="display-title text-ink">
                   About
                   <br />
                   Me
                 </h2>
-                <p className="signature mb-6 text-5xl text-lime md:text-7xl">Hello!</p>
-                <div className="max-w-md space-y-5 text-sm font-semibold leading-6">
+                <div className="mt-2 flex items-center gap-3">
+                  <span className="h-px w-16 bg-lime" />
+                  <p className="signature text-4xl text-lime md:text-5xl">Hello!</p>
+                </div>
+
+                <div className="mt-6 max-w-lg space-y-4 text-sm font-medium leading-relaxed text-stone-800">
                   <p>
                     I&apos;m Saumitra Misra, a B.Tech CSE student at GLA University
-                    with a passion for design and technology. I create impactful visuals
-                    that communicate ideas, build brands, and leave a lasting impression.
+                    with a dedicated focus on visual communications and user experience design.
+                    I craft high-contrast, memorable visuals that convey brand narrative with precision.
                   </p>
                   <p>
-                    I have experience in graphic design, UI design, frontend design, and
-                    startup projects. I specialize in Canva and have intermediate skills
-                    in Figma.
+                    From promotional poster campaigns and social identity systems to Figma-based
+                    interface prototypes, I blend creative intuition with structured engineering principles.
                   </p>
                 </div>
-                <p className="signature mt-10 text-4xl">Saumitra</p>
+
+                {/* Differentiating Stats Cards */}
+                <div className="mt-8 grid grid-cols-3 gap-3">
+                  {stats.map((s) => (
+                    <div
+                      key={s.label}
+                      className="rounded-xl border border-stone-300 bg-white/70 p-3.5 shadow-sm"
+                    >
+                      <p className="text-xl font-black text-ink">{s.value}</p>
+                      <p className="mt-1 text-xs text-stone-600 font-medium leading-tight">
+                        {s.label}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Specialties tags */}
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {["Canva Specialist", "Figma Intermediate", "Poster Art", "UI Design", "Editorial"].map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-lg border border-stone-300 bg-stone-100/90 px-3 py-1 text-xs font-semibold text-stone-800"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </motion.div>
-              <div className="grid grid-cols-3 border-t border-ink bg-ink p-5 text-[0.62rem] font-bold uppercase tracking-[0.12em] text-cream">
-                <span>Designing ideas into impact.</span>
-                <span className="text-center">Scroll for more work</span>
-                <span className="text-right">Let&apos;s create something great!</span>
-              </div>
             </div>
 
-            <div className="relative min-h-[560px] overflow-hidden">
-              <div className="absolute inset-x-12 top-14 h-[78%] bg-blue-300" />
-              <div className="absolute inset-x-20 top-20 h-[72%] border border-ink/35" />
-              <Image
-                src="/Assets/mypic.jpg"
-                alt="Saumitra Misra"
-                fill
-                className="object-contain object-bottom grayscale"
-                sizes="(min-width: 1024px) 55vw, 100vw"
-              />
+            {/* Differentiated Editorial Framing for Photo */}
+            <div className="relative flex items-center justify-center">
+              <div className="relative h-[480px] w-full max-w-[420px] rounded-3xl border-2 border-stone-900 bg-stone-100 p-4 shadow-2xl overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-transparent to-transparent z-10" />
+                <Image
+                  src="/Assets/mypic.jpg"
+                  alt="Saumitra Misra"
+                  fill
+                  className="object-cover grayscale contrast-125 rounded-2xl"
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                />
+                <div className="absolute bottom-6 left-6 right-6 z-20 text-cream">
+                  <p className="signature text-3xl text-lime">Saumitra Misra</p>
+                  <p className="text-xs font-semibold tracking-wider text-zinc-300 uppercase mt-0.5">
+                    Designer • Creator • GLA University
+                  </p>
+                </div>
+              </div>
             </div>
+          </div>
+
+          <div className="grid grid-cols-3 border-t border-ink bg-ink p-4 text-xs font-semibold tracking-wider text-cream">
+            <span>Designing ideas into impact.</span>
+            <span className="text-center">Scroll for selected works</span>
+            <span className="text-right">Open to collaboration</span>
           </div>
         </section>
 
+        {/* ====================================================================
+            WORK OVERVIEW SECTION
+            ==================================================================== */}
         <section id="work" className="deck-page deck-dark">
           <div className="noise absolute inset-0 opacity-20" />
           <div className="relative z-10 flex min-h-screen flex-col justify-between p-8 md:p-12">
             <div className="flex justify-between">
               <PageNumber dark>02</PageNumber>
-              <p className="section-kicker text-cream">Work samples</p>
+              <p className="section-kicker text-cream">Work Overview</p>
             </div>
             <div>
               <h2 className="display-title text-cream">
@@ -191,36 +246,39 @@ export function PortfolioSite() {
                 <br />
                 <span className="text-lime">Work</span>
               </h2>
-              <div className="mt-8 grid gap-6 border-b border-lime pb-5 text-[0.7rem] font-bold uppercase tracking-[0.1em] text-cream md:grid-cols-5">
+              <div className="mt-8 grid gap-6 border-b border-lime pb-5 text-xs font-semibold tracking-wider text-cream md:grid-cols-5">
                 {["Poster Design", "Branding", "Social Media", "T-shirt Mockups", "UI/UX Designs"].map((item, index) => (
                   <div key={item}>
-                    <p className="mb-1 text-lg text-cream">{String(index + 1).padStart(2, "0")}</p>
-                    <p>{item}</p>
+                    <p className="mb-1 text-base font-bold text-lime">{String(index + 1).padStart(2, "0")}</p>
+                    <p className="text-zinc-200">{item}</p>
                   </div>
                 ))}
               </div>
-              <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-                {[...posterProjects, projects[8]].map((project) => (
+              <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                {posterProjects.map((project) => (
                   <WorkThumb key={project.title} project={project} />
                 ))}
               </div>
             </div>
-            <div className="flex justify-between text-[0.68rem] font-bold uppercase tracking-[0.12em] text-cream">
-              <span>Creative work. Real impact.</span>
-              <span>Design that connects.</span>
+            <div className="flex justify-between text-xs font-semibold tracking-wider text-zinc-300">
+              <span>Creative work • Real impact</span>
+              <span>Design that connects</span>
             </div>
           </div>
         </section>
 
+        {/* ====================================================================
+            POSTER DESIGNS SECTION
+            ==================================================================== */}
         <section className="deck-page deck-dark">
           <div className="relative z-10 grid min-h-screen gap-10 p-8 md:p-12 lg:grid-cols-[1fr_0.28fr]">
             <div>
               <div className="mb-12 flex justify-between">
                 <PageNumber dark>03</PageNumber>
                 <p className="section-kicker text-cream">
-                  Work samples
+                  Work Samples
                   <br />
-                  (Poster designs)
+                  Poster Designs
                 </p>
               </div>
               <h2 className="display-title text-cream">
@@ -234,42 +292,43 @@ export function PortfolioSite() {
                 ))}
               </div>
             </div>
-            <div className="flex flex-col justify-center gap-8 text-sm font-semibold leading-6 text-cream/80">
-              <Globe2 className="h-9 w-9 text-cream" />
-              <p>Bold, edgy and meaningful visuals crafted to grab attention and communicate ideas powerfully.</p>
-              <div className="mt-10 text-4xl text-lime">+</div>
-              <p className="mt-auto text-[0.68rem] font-bold uppercase tracking-[0.12em]">Design that connects.</p>
+            <div className="flex flex-col justify-center gap-8 text-sm font-semibold leading-relaxed text-cream/80">
+              <Globe2 className="h-9 w-9 text-lime" />
+              <p>Bold, high-contrast visuals crafted to grab attention and communicate core ideas powerfully.</p>
+              <div className="mt-6 text-4xl text-lime">+</div>
+              <p className="mt-auto text-xs font-bold uppercase tracking-wider text-zinc-400">Design that connects.</p>
             </div>
           </div>
         </section>
 
+        {/* ====================================================================
+            T-SHIRT MOCKUPS SECTION
+            ==================================================================== */}
         <section className="deck-page bg-paper">
           <div className="grid min-h-screen items-center gap-10 p-8 md:p-12 lg:grid-cols-[0.44fr_0.56fr]">
             <div>
               <PageNumber>04</PageNumber>
-              <h2 className="mt-16 text-5xl font-black uppercase leading-none tracking-tighter md:text-7xl">
+              <h2 className="mt-12 text-5xl font-black uppercase leading-none tracking-tight md:text-7xl">
                 T-shirt
                 <br />
                 <span className="text-lime">Mockups</span>
               </h2>
-              <p className="mt-14 max-w-xs text-lg font-semibold leading-7">
-                Streetwear inspired designs with bold typography and unique aesthetics.
+              <p className="mt-8 max-w-xs text-base font-semibold leading-relaxed text-stone-700">
+                Streetwear inspired designs with bold typography and custom framing.
                 Made to stand out.
               </p>
-              <p className="mt-24 text-xs font-black uppercase tracking-[0.18em]">Wear your personality.</p>
+              <p className="mt-12 text-xs font-bold uppercase tracking-wider text-stone-500">Wear your personality.</p>
             </div>
             <div>
-              <p className="mb-8 text-right text-xs font-black uppercase tracking-[0.16em]">
-                Work samples
-                <br />
-                (T-shirt mockups)
+              <p className="mb-6 text-right text-xs font-bold uppercase tracking-wider text-stone-600">
+                Work Samples • Apparel Concepts
               </p>
               <div className="grid gap-6 sm:grid-cols-2">
                 {tShirtProjects.map((project) => (
                   <Link
                     href={project.href}
                     target="_blank"
-                    className="relative h-[28rem] overflow-hidden bg-transparent"
+                    className="relative h-[26rem] overflow-hidden rounded-2xl border border-stone-300 bg-stone-100/60 p-4 transition-transform hover:-translate-y-1"
                     key={project.title}
                   >
                     <Image
@@ -285,133 +344,181 @@ export function PortfolioSite() {
           </div>
         </section>
 
+        {/* ====================================================================
+            SOCIAL MEDIA DESIGNS SECTION (Unique Projects)
+            ==================================================================== */}
         <section className="deck-page deck-dark">
           <div className="relative z-10 grid min-h-screen gap-10 p-8 md:p-12 lg:grid-cols-[0.46fr_0.54fr]">
             <div>
               <PageNumber dark>05</PageNumber>
-              <h2 className="mt-16 text-5xl font-black uppercase leading-none tracking-tighter text-cream md:text-7xl">
+              <h2 className="mt-12 text-5xl font-black uppercase leading-none tracking-tight text-cream md:text-7xl">
                 Social Media
                 <br />
                 <span className="text-lime">Designs</span>
                 <Sparkles className="ml-4 inline h-10 w-10 text-lime" />
               </h2>
-              <p className="mt-12 max-w-xs border-l border-cream/40 pl-6 text-sm font-semibold leading-6 text-cream/80">
+              <p className="mt-8 max-w-xs border-l border-cream/40 pl-6 text-sm font-semibold leading-relaxed text-cream/80">
                 Engaging, aesthetic and on-brand social media designs that help brands
                 connect with their audience.
               </p>
-              <p className="mt-24 text-[0.68rem] font-bold uppercase tracking-[0.12em] text-cream">
-                Design + Strategy + Impact
+              <p className="mt-12 text-xs font-bold uppercase tracking-wider text-zinc-400">
+                Design • Strategy • Impact
               </p>
             </div>
             <div>
-              <p className="mb-8 text-right text-xs font-black uppercase tracking-[0.16em] text-cream">
-                Work samples
-                <br />
-                (Instagram post work)
+              <p className="mb-6 text-right text-xs font-bold uppercase tracking-wider text-cream/80">
+                Work Samples • Social &amp; Campaign Visuals
               </p>
               <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
                 {socialProjects.map((project) => (
                   <WorkThumb key={`${project.title}-social`} project={project} tall />
                 ))}
               </div>
-              <p className="mt-16 text-right text-[0.68rem] font-bold uppercase tracking-[0.12em] text-cream">
+              <p className="mt-10 text-right text-xs font-bold uppercase tracking-wider text-zinc-400">
                 Content that connects.
               </p>
             </div>
           </div>
         </section>
 
+        {/* ====================================================================
+            UI/UX DESIGNS SECTION (Unique Projects)
+            ==================================================================== */}
         <section className="deck-page deck-dark">
           <div className="relative z-10 grid min-h-screen gap-10 p-8 md:p-12 lg:grid-cols-[0.42fr_0.58fr]">
             <div className="flex flex-col justify-between">
               <PageNumber dark>06</PageNumber>
               <div>
-                <h2 className="text-5xl font-black uppercase leading-none tracking-tighter md:text-7xl">
+                <h2 className="text-5xl font-black uppercase leading-none tracking-tight text-cream md:text-7xl">
                   UI/UX
                   <br />
                   <span className="text-lime">Designs</span>
                 </h2>
-                <p className="mt-10 max-w-xs text-sm font-semibold leading-6 text-cream/80">
+                <p className="mt-8 max-w-xs text-sm font-semibold leading-relaxed text-cream/80">
                   Clean, modern and user-focused interfaces designed for seamless
-                  digital experiences.
+                  digital experiences and cohesive brand design systems.
                 </p>
               </div>
-              <p className="text-[0.68rem] font-bold uppercase tracking-[0.12em] text-cream">
-                Designed to solve. Built to delight.
+              <p className="text-xs font-bold uppercase tracking-wider text-zinc-400">
+                Designed to solve • Built to delight
               </p>
             </div>
             <div>
-              <p className="mb-8 text-right text-xs font-black uppercase tracking-[0.16em] text-cream">
-                Work samples
-                <br />
-                (Figma designs)
+              <p className="mb-6 text-right text-xs font-bold uppercase tracking-wider text-cream/80">
+                Work Samples • Interface Systems
               </p>
               <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
                 {uiProjects.map((project) => (
                   <WorkThumb key={`${project.title}-ui`} project={project} tall />
                 ))}
               </div>
-              <ArrowUpRight className="ml-auto mt-12 h-10 w-10 text-cream" />
+              <ArrowUpRight className="ml-auto mt-8 h-8 w-8 text-lime" />
             </div>
           </div>
         </section>
 
-        <section className="deck-page bg-paper">
-          <div className="grid min-h-screen items-center gap-10 p-8 md:p-12 lg:grid-cols-[0.58fr_0.42fr]">
+        {/* ====================================================================
+            CONTACT SECTION (Rebalanced & Symmetrical Layout)
+            ==================================================================== */}
+        <section id="contact" className="deck-page bg-paper">
+          <div className="min-h-screen p-8 md:p-14 lg:p-20 flex flex-col justify-between">
             <div>
-              <PageNumber>07</PageNumber>
-              <h2 className="mt-16 display-title text-ink">
-                Let&apos;s Work
-              </h2>
-              <p className="signature -mt-3 text-5xl text-lime md:text-7xl">Together</p>
-              <div className="mt-16 grid gap-10 md:grid-cols-[0.5fr_0.5fr]">
-                <div>
-                  <p className="mb-4 text-xs font-black uppercase tracking-[0.16em]">
-                    Available for
-                  </p>
-                  <p className="text-sm font-bold uppercase leading-6">
-                    Freelance projects
-                    <br />
-                    Collaborations
-                    <br />
-                    Internships
-                    <br />
-                    Full time opportunities
-                  </p>
+              <div className="flex items-center justify-between">
+                <PageNumber>07</PageNumber>
+                <p className="section-kicker text-ink">Get in Touch</p>
+              </div>
+
+              {/* Title Header with Non-overlapping Script */}
+              <div className="mt-6">
+                <h2 className="display-title text-ink">
+                  Let&apos;s Work
+                </h2>
+                <div className="mt-2 flex items-center gap-3">
+                  <span className="h-px w-20 bg-lime" />
+                  <p className="signature text-4xl text-lime md:text-6xl">Together</p>
                 </div>
-                <div className="space-y-5 text-sm font-semibold">
-                  <Link href="https://www.instagram.com/the._.deadshadow/" target="_blank" className="flex items-center gap-4">
-                    <Instagram className="h-5 w-5" /> @the._.deadshadow
-                  </Link>
-                  <Link href="https://www.instagram.com/editorinwildness/" target="_blank" className="flex items-center gap-4">
-                    <Instagram className="h-5 w-5" /> @editorinwildness
-                  </Link>
-                  <Link href="tel:+919555942512" className="flex items-center gap-4">
-                    <Phone className="h-5 w-5" /> 9555942512
-                  </Link>
-                  <Link href="mailto:saumitramisra95@gmail.com" className="flex items-center gap-4">
-                    <Mail className="h-5 w-5" /> saumitramisra95@gmail.com
-                  </Link>
-                  <span className="flex items-center gap-4">
-                    <MapPin className="h-5 w-5" /> India
-                  </span>
+              </div>
+
+              {/* Balanced 3-Column Contact Grid */}
+              <div className="mt-12 grid gap-8 md:grid-cols-3">
+                {/* Column 1: Collaboration Services */}
+                <div className="rounded-2xl border border-stone-300 bg-white/70 p-6 shadow-sm">
+                  <p className="text-xs font-black uppercase tracking-wider text-stone-500 mb-3">
+                    Available For
+                  </p>
+                  <ul className="space-y-2 text-sm font-bold text-stone-900">
+                    <li className="flex items-center gap-2">
+                      <CheckCircle2 className="h-4 w-4 text-lime" /> Freelance Design Projects
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle2 className="h-4 w-4 text-lime" /> Brand &amp; Poster Campaigns
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle2 className="h-4 w-4 text-lime" /> UI/UX &amp; Web Systems
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <CheckCircle2 className="h-4 w-4 text-lime" /> Full-time Opportunities
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Column 2: Direct Contact Channels */}
+                <div className="rounded-2xl border border-stone-300 bg-white/70 p-6 shadow-sm">
+                  <p className="text-xs font-black uppercase tracking-wider text-stone-500 mb-3">
+                    Direct Contact
+                  </p>
+                  <div className="space-y-3 text-sm font-semibold text-stone-800">
+                    <Link
+                      href="mailto:saumitramisra95@gmail.com"
+                      className="flex items-center gap-3 transition hover:text-black"
+                    >
+                      <Mail className="h-4 w-4 text-stone-600" /> saumitramisra95@gmail.com
+                    </Link>
+                    <Link
+                      href="tel:+919555942512"
+                      className="flex items-center gap-3 transition hover:text-black"
+                    >
+                      <Phone className="h-4 w-4 text-stone-600" /> +91 9555942512
+                    </Link>
+                    <span className="flex items-center gap-3 text-stone-600">
+                      <MapPin className="h-4 w-4" /> Mathura / India
+                    </span>
+                  </div>
+                </div>
+
+                {/* Column 3: Social & Creative Handles */}
+                <div className="rounded-2xl border border-stone-300 bg-white/70 p-6 shadow-sm">
+                  <p className="text-xs font-black uppercase tracking-wider text-stone-500 mb-3">
+                    Social &amp; Visual Work
+                  </p>
+                  <div className="space-y-3 text-sm font-semibold text-stone-800">
+                    <Link
+                      href="https://www.instagram.com/the._.deadshadow/"
+                      target="_blank"
+                      className="flex items-center gap-3 transition hover:text-black"
+                    >
+                      <Instagram className="h-4 w-4 text-stone-600" /> @the._.deadshadow
+                    </Link>
+                    <Link
+                      href="https://www.instagram.com/editorinwildness/"
+                      target="_blank"
+                      className="flex items-center gap-3 transition hover:text-black"
+                    >
+                      <Instagram className="h-4 w-4 text-stone-600" /> @editorinwildness
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="relative min-h-[560px]">
-              <div className="absolute left-6 top-24 h-24 w-[80%] bg-blue-300" />
-              <Image
-                src="/Assets/pfp2_circle.png"
-                alt="Saumitra Misra"
-                fill
-                className="object-contain object-bottom"
-              />
+
+            {/* Bottom Footer Bar */}
+            <div className="mt-14 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-stone-300 pt-6 text-xs font-medium text-stone-600">
+              <span>© {new Date().getFullYear()} Saumitra Misra. All rights reserved.</span>
+              <span className="flex items-center gap-2">
+                <Globe2 className="h-4 w-4 text-lime" /> Visual Designer &amp; UI Specialist
+              </span>
+              <span>Available for worldwide remote collaborations</span>
             </div>
-          </div>
-          <div className="grid grid-cols-3 bg-ink px-8 py-5 text-[0.68rem] font-bold uppercase tracking-[0.12em] text-cream md:px-12">
-            <span>Thank you for viewing!</span>
-            <Globe2 className="mx-auto h-5 w-5" />
-            <span className="text-right">Let&apos;s create something amazing.</span>
           </div>
         </section>
       </main>

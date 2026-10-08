@@ -50,6 +50,9 @@ const config: Config = {
       fontFamily: {
         sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
         bebas: ["'Bebas Neue'", "sans-serif"],
+        august: ["'August'", "'Bebas Neue'", "sans-serif"],
+        lavonia: ["'Lavonia Classy'", "Brittany", "cursive"],
+        script: ["'Lavonia Classy'", "Brittany", "cursive"],
       },
       boxShadow: {
         glow: "0 0 80px rgba(125, 246, 255, 0.18)",

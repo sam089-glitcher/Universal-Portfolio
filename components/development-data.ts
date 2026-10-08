@@ -226,13 +226,13 @@ export const devExperience: ExperienceItem[] = [
   {
     role: "Graphic Design & UI Intern",
     organization: "Holy Connect",
-    period: "Ongoing",
+    period: "Completed",
     type: "Internship",
     description: [
-      "Assisting in designing and refining user interfaces to improve digital accessibility and visual clarity.",
-      "Creating engaging layouts, design assets, and interactive component prototypes for client applications.",
-      "Collaborating directly with engineering teams to translate feature requirements into intuitive UI/UX solutions.",
-      "Developing rapid design prototypes and mockups to streamline user testing, feedback, and development iteration.",
+      "Assisted in designing and refining user interfaces to improve digital accessibility and visual clarity.",
+      "Created engaging layouts, design assets, and interactive component prototypes for client applications.",
+      "Collaborated directly with engineering teams to translate feature requirements into intuitive UI/UX solutions.",
+      "Developed rapid design prototypes and mockups to streamline user testing, feedback, and development iteration.",
     ],
     technologies: ["UI/UX Design", "Figma", "Design Systems", "Prototyping", "Frontend Collaboration"],
   },
