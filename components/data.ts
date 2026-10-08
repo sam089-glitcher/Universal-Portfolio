@@ -57,10 +57,10 @@ export const projects = [
     featured: true,
   },
   {
-    title: "T-shirt Mockup",
-    category: "Merch Concept",
-    image: "/Assets/tshirt idea1.png",
-    href: "/Assets/tshirt idea1.png",
+    title: "Streetwear Tee Mockup",
+    category: "Apparel & Merch",
+    image: "/Assets/streetwear_tee_mockup.jpg",
+    href: "/Assets/streetwear_tee_mockup.jpg",
     featured: true,
   },
   {
@@ -110,5 +110,12 @@ export const projects = [
     category: "Creative Edit",
     image: "/Assets/random edit1.jpg",
     href: "/Assets/random edit1.jpg",
+  },
+  {
+    title: "Arterial Puffer Jacket",
+    category: "Apparel & Merch",
+    image: "/Assets/aura_jacket_card.jpg",
+    href: "/Assets/aura_jacket_card.jpg",
+    featured: true,
   },
 ];

@@ -134,19 +134,25 @@ body {
 }
 
 .display-title {
-  font-size: clamp(4.7rem, 12vw, 12.5rem);
+  font-size: clamp(2.8rem, 6.2vw, 6.2rem);
+  font-weight: 950;
+  line-height: 0.88;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  max-width: 100%;
+}
+
+.display-title-hero {
+  font-size: clamp(4.2rem, 11vw, 10.5rem);
   font-weight: 950;
   line-height: 0.84;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.035em;
   text-transform: uppercase;
-  transform: scaleX(0.86);
-  transform-origin: left center;
-  width: 116%;
+  max-width: 100%;
 }
 
 .display-title.text-center,
 .display-title-center {
-  transform-origin: center center;
   width: 100%;
   text-align: center;
 }
@@ -199,10 +205,14 @@ body {
 
 @media (max-width: 768px) {
   .display-title {
-    font-size: clamp(3.2rem, 16vw, 6.5rem);
-    letter-spacing: -0.018em;
-    width: 100%;
-    transform: none;
+    font-size: clamp(2.4rem, 12vw, 4.2rem);
+    letter-spacing: -0.02em;
+    line-height: 0.9;
+  }
+  .display-title-hero {
+    font-size: clamp(3.2rem, 15vw, 6.2rem);
+    letter-spacing: -0.025em;
+    line-height: 0.86;
   }
 }
 

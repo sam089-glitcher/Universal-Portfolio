@@ -19,16 +19,16 @@ import { SiteNav } from "@/components/site-nav";
 
 // Highlight set showcasing 1 standout piece from each category (Issue 1)
 const highlightProjects = [
-  projects[0], // Poster Design: The Door To Heaven
-  projects[1], // Editorial Visual: GOD
-  projects[2], // Social Creative: All Good Thing
-  projects[3], // Apparel & Merch: T-shirt Mockup
-  projects[9], // Typography & Art: Blith Typography
+  projects[0],  // Poster Design: The Door To Heaven
+  projects[1],  // Editorial Visual: GOD
+  projects[2],  // Social Creative: All Good Thing
+  projects[3],  // Apparel & Merch: Streetwear Tee Mockup
+  projects[9],  // Typography & Art: Blith Typography
 ];
 
 // Dedicated category subsets (Zero cross-section card duplication)
 const posterProjects = [projects[0], projects[4], projects[7], projects[8]];
-const tShirtProjects = [projects[3], projects[9]];
+const tShirtProjects = [projects[3], projects[12]]; // Genuine Streetwear Tee & Arterial Jacket
 const socialProjects = [projects[2], projects[1], projects[5], projects[11]];
 const typographyProjects = [projects[9], projects[10], projects[6], projects[5]];
 
@@ -45,13 +45,13 @@ function WorkThumb({ project, tall = false }: { project: typeof projects[number]
     <Link
       href={project.href}
       target="_blank"
-      className={tall ? "work-thumb h-[20rem] rounded-xl overflow-hidden" : "work-thumb h-[18rem] rounded-xl overflow-hidden"}
+      className={tall ? "work-thumb h-[20rem] rounded-xl overflow-hidden" : "work-thumb h-[17rem] rounded-xl overflow-hidden"}
     >
       <Image
         src={project.image}
         alt={project.title}
         fill
-        sizes="(min-width: 1024px) 20vw, 50vw"
+        sizes="(min-width: 1024px) 25vw, 50vw"
         className="object-cover transition duration-500 group-hover:scale-105"
       />
       <span className="text-xs font-semibold">{project.title}</span>
@@ -78,7 +78,7 @@ export function PortfolioSite() {
           <div className="noise absolute inset-0 opacity-25" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_74%_36%,rgba(203,244,39,0.2),transparent_20rem)]" />
           <div className="relative z-10 grid min-h-screen gap-8 px-8 py-8 pt-24 md:px-12 md:py-12 md:pt-28 lg:grid-cols-[1.15fr_0.85fr]">
-            <div className="flex flex-col justify-between">
+            <div className="min-w-0 flex flex-col justify-between">
               <div className="flex items-center justify-between text-xs font-semibold tracking-wider text-zinc-300">
                 <span className="flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full bg-lime animate-pulse" />
@@ -95,7 +95,7 @@ export function PortfolioSite() {
                 transition={{ duration: 0.7 }}
                 className="py-10"
               >
-                <h1 className="display-title max-w-[900px] text-white">
+                <h1 className="display-title-hero max-w-[900px] text-white">
                   Saumitra
                   <br />
                   Misra
@@ -127,7 +127,7 @@ export function PortfolioSite() {
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="relative min-h-[520px] lg:min-h-0"
+              className="relative min-h-[520px] lg:min-h-0 min-w-0"
             >
               <div className="absolute bottom-16 right-0 h-[76%] w-[70%] bg-lime" />
               <Image
@@ -142,11 +142,11 @@ export function PortfolioSite() {
         </section>
 
         {/* ====================================================================
-            ABOUT ME SECTION (Rebalanced & Prominent Stat Cards - Issue 7)
+            ABOUT ME SECTION (Rebalanced & Prominent Stat Cards)
             ==================================================================== */}
         <section id="about" className="deck-page bg-paper">
           <div className="mx-auto grid min-h-screen max-w-7xl gap-8 p-8 md:gap-12 md:p-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-            <div className="flex flex-col justify-center space-y-6">
+            <div className="min-w-0 flex flex-col justify-center space-y-6">
               <div className="flex items-center justify-between border-b border-neutral-300 pb-3">
                 <PageNumber>01</PageNumber>
                 <p className="section-kicker text-black">Background &amp; Philosophy</p>
@@ -183,7 +183,7 @@ export function PortfolioSite() {
                   </p>
                 </div>
 
-                {/* Stat Cards - Prominent, anchored under body paragraph (Issue 7) */}
+                {/* Stat Cards - Prominent, anchored under body paragraph */}
                 <div className="grid grid-cols-3 gap-3 pt-2">
                   {stats.map((s) => (
                     <div
@@ -213,7 +213,7 @@ export function PortfolioSite() {
             </div>
 
             {/* Editorial Framing for Photo */}
-            <div className="flex items-center justify-center lg:justify-end">
+            <div className="min-w-0 flex items-center justify-center lg:justify-end">
               <div className="relative h-[480px] w-full max-w-[420px] rounded-3xl border-2 border-black bg-neutral-900 p-3 shadow-2xl overflow-hidden sm:h-[520px]">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10" />
                 <Image
@@ -241,7 +241,7 @@ export function PortfolioSite() {
         </section>
 
         {/* ====================================================================
-            WORK OVERVIEW SECTION (1 Highlight per Discipline - Issue 1)
+            WORK OVERVIEW SECTION (1 Highlight per Discipline)
             ==================================================================== */}
         <section id="work" className="deck-page deck-dark">
           <div className="noise absolute inset-0 opacity-20" />
@@ -250,7 +250,7 @@ export function PortfolioSite() {
               <PageNumber dark>02</PageNumber>
               <p className="section-kicker text-white">Work Overview</p>
             </div>
-            <div>
+            <div className="min-w-0">
               <h2 className="display-title text-white">
                 Selected
                 <br />
@@ -270,7 +270,7 @@ export function PortfolioSite() {
                   </div>
                 ))}
               </div>
-              <div className="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+              <div className="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 min-w-0">
                 {highlightProjects.map((project) => (
                   <WorkThumb key={`highlight-${project.title}`} project={project} />
                 ))}
@@ -284,11 +284,11 @@ export function PortfolioSite() {
         </section>
 
         {/* ====================================================================
-            POSTER DESIGNS SECTION (Dedicated Posters Only - Zero Duplicate)
+            POSTER DESIGNS SECTION (Dedicated Posters Only)
             ==================================================================== */}
         <section className="deck-page deck-dark">
           <div className="relative z-10 grid min-h-screen gap-10 p-8 md:p-12 lg:grid-cols-[1fr_0.28fr]">
-            <div>
+            <div className="min-w-0">
               <div className="mb-12 flex justify-between">
                 <PageNumber dark>03</PageNumber>
                 <p className="section-kicker text-white">
@@ -300,13 +300,13 @@ export function PortfolioSite() {
                 <br />
                 <span className="text-lime">Designs</span>
               </h2>
-              <div className="mt-12 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+              <div className="mt-12 grid gap-4 sm:grid-cols-2 xl:grid-cols-4 min-w-0">
                 {posterProjects.map((project) => (
                   <WorkThumb key={`poster-${project.title}`} project={project} tall />
                 ))}
               </div>
             </div>
-            <div className="flex flex-col justify-center gap-8 text-sm font-semibold leading-relaxed text-zinc-300">
+            <div className="min-w-0 flex flex-col justify-center gap-8 text-sm font-semibold leading-relaxed text-zinc-300">
               <Globe2 className="h-9 w-9 text-lime" />
               <p>Bold, high-contrast visuals crafted to grab attention and communicate core ideas powerfully.</p>
               <div className="mt-6 text-4xl text-lime">+</div>
@@ -316,41 +316,49 @@ export function PortfolioSite() {
         </section>
 
         {/* ====================================================================
-            T-SHIRT MOCKUPS SECTION
+            T-SHIRT / APPAREL MOCKUPS SECTION (Fixed Apparel Cards)
             ==================================================================== */}
         <section className="deck-page bg-paper">
-          <div className="grid min-h-screen items-center gap-10 p-8 md:p-12 lg:grid-cols-[0.44fr_0.56fr]">
-            <div>
+          <div className="mx-auto grid min-h-screen max-w-7xl items-center gap-10 p-8 md:p-12 lg:grid-cols-[0.45fr_0.55fr]">
+            <div className="min-w-0">
               <PageNumber>04</PageNumber>
-              <h2 className="display-title mt-12 text-black">
+              <h2 className="display-title mt-8 text-black">
                 T-shirt
                 <br />
                 <span className="text-lime">Mockups</span>
               </h2>
-              <p className="mt-8 max-w-xs text-sm font-semibold leading-relaxed text-neutral-700">
-                Streetwear inspired designs with bold typography and custom framing.
-                Made to stand out.
+              <p className="mt-6 max-w-sm text-sm font-semibold leading-relaxed text-neutral-700">
+                Streetwear-inspired apparel concepts featuring custom cybernetic graphics, bold typography, and technical outerwear styling.
               </p>
-              <p className="mt-12 text-xs font-semibold tracking-wider text-neutral-500">Wear your personality</p>
+              <p className="mt-8 text-xs font-semibold tracking-wider text-neutral-500">Wear your personality</p>
             </div>
-            <div>
+            <div className="min-w-0">
               <p className="mb-6 text-right text-xs font-semibold tracking-wider text-neutral-500">
                 Work Samples • Apparel Concepts
               </p>
-              <div className="grid gap-6 sm:grid-cols-2">
+              <div className="grid gap-6 sm:grid-cols-2 min-w-0">
                 {tShirtProjects.map((project) => (
                   <Link
                     href={project.href}
                     target="_blank"
-                    className="relative h-[26rem] overflow-hidden rounded-2xl border border-neutral-300 bg-white/80 p-4 transition-transform hover:-translate-y-1 shadow-sm"
+                    className="group relative h-[22rem] sm:h-[26rem] overflow-hidden rounded-2xl border border-neutral-300 bg-neutral-950 shadow-xl transition-all duration-300 hover:-translate-y-1.5 hover:border-black hover:shadow-2xl"
                     key={`tshirt-${project.title}`}
                   >
                     <Image
                       src={project.image}
                       alt={project.title}
                       fill
-                      className="object-contain drop-shadow-2xl transition duration-500 hover:scale-105"
+                      sizes="(min-width: 1024px) 30vw, 50vw"
+                      className="object-cover transition duration-700 group-hover:scale-105"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none" />
+                    <div className="absolute bottom-0 inset-x-0 p-4 z-10 flex items-center justify-between">
+                      <div>
+                        <p className="text-xs font-bold text-lime">{project.category}</p>
+                        <p className="text-base font-black text-white">{project.title}</p>
+                      </div>
+                      <ArrowUpRight className="h-5 w-5 text-white/70 transition group-hover:text-lime group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </div>
                   </Link>
                 ))}
               </div>
@@ -359,36 +367,37 @@ export function PortfolioSite() {
         </section>
 
         {/* ====================================================================
-            SOCIAL MEDIA DESIGNS SECTION
+            SOCIAL MEDIA DESIGNS SECTION (2x2 Balanced Grid - No Squishing)
             ==================================================================== */}
         <section className="deck-page deck-dark">
-          <div className="relative z-10 grid min-h-screen gap-10 p-8 md:p-12 lg:grid-cols-[0.46fr_0.54fr]">
-            <div>
-              <PageNumber dark>05</PageNumber>
-              <h2 className="display-title mt-12 text-white">
-                Social Media
-                <br />
-                <span className="text-lime">Designs</span>
-                <Sparkles className="ml-4 inline h-10 w-10 text-lime" />
-              </h2>
-              <p className="mt-8 max-w-xs border-l border-zinc-400 pl-6 text-sm font-semibold leading-relaxed text-zinc-300">
-                Engaging, aesthetic and on-brand social media designs that help brands
-                connect with their audience.
-              </p>
-              <p className="mt-12 text-xs font-semibold tracking-wider text-zinc-400">
+          <div className="mx-auto grid min-h-screen max-w-7xl items-center gap-10 p-8 md:p-12 lg:grid-cols-[0.45fr_0.55fr]">
+            <div className="min-w-0 flex flex-col justify-between py-6">
+              <div>
+                <PageNumber dark>05</PageNumber>
+                <h2 className="display-title mt-8 text-white">
+                  Social Media
+                  <br />
+                  <span className="text-lime">Designs</span>
+                  <Sparkles className="ml-3 inline h-8 w-8 text-lime" />
+                </h2>
+                <p className="mt-6 max-w-sm border-l border-zinc-500 pl-4 text-sm font-semibold leading-relaxed text-zinc-300">
+                  Engaging, aesthetic and on-brand social media creatives and campaign visuals crafted to connect with audiences.
+                </p>
+              </div>
+              <p className="mt-8 text-xs font-semibold tracking-wider text-zinc-400">
                 Design • Strategy • Impact
               </p>
             </div>
-            <div>
+            <div className="min-w-0">
               <p className="mb-6 text-right text-xs font-semibold tracking-wider text-zinc-400">
                 Work Samples • Social &amp; Campaign Visuals
               </p>
-              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+              <div className="grid grid-cols-2 gap-4 md:gap-5 min-w-0">
                 {socialProjects.map((project) => (
-                  <WorkThumb key={`${project.title}-social`} project={project} tall />
+                  <WorkThumb key={`${project.title}-social`} project={project} />
                 ))}
               </div>
-              <p className="mt-10 text-right text-xs font-semibold tracking-wider text-zinc-400">
+              <p className="mt-6 text-right text-xs font-semibold tracking-wider text-zinc-400">
                 Content that connects
               </p>
             </div>
@@ -396,19 +405,19 @@ export function PortfolioSite() {
         </section>
 
         {/* ====================================================================
-            TYPOGRAPHY & ART SECTION (Renamed & Fixed Content - Issues 2 & 8)
+            TYPOGRAPHY & ART SECTION (2x2 Balanced Grid - No Blowout)
             ==================================================================== */}
         <section className="deck-page deck-dark">
-          <div className="relative z-10 grid min-h-screen gap-10 p-8 md:p-12 lg:grid-cols-[0.42fr_0.58fr]">
-            <div className="flex flex-col justify-between">
+          <div className="mx-auto grid min-h-screen max-w-7xl items-center gap-10 p-8 md:p-12 lg:grid-cols-[0.45fr_0.55fr]">
+            <div className="min-w-0 flex flex-col justify-between py-6">
               <PageNumber dark>06</PageNumber>
-              <div>
-                <h2 className="display-title text-white">
+              <div className="my-auto">
+                <h2 className="display-title mt-8 text-white">
                   Typography
                   <br />
                   <span className="text-lime">Art</span>
                 </h2>
-                <p className="mt-8 max-w-xs text-sm font-semibold leading-relaxed text-zinc-300">
+                <p className="mt-6 max-w-sm text-sm font-semibold leading-relaxed text-zinc-300">
                   Custom letterforms, editorial typography, and abstract visual compositions crafted with experimental textures.
                 </p>
               </div>
@@ -416,16 +425,16 @@ export function PortfolioSite() {
                 Designed to solve • Built to delight
               </p>
             </div>
-            <div>
+            <div className="min-w-0">
               <p className="mb-6 text-right text-xs font-semibold tracking-wider text-zinc-400">
                 Work Samples • Typography &amp; Art
               </p>
-              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+              <div className="grid grid-cols-2 gap-4 md:gap-5 min-w-0">
                 {typographyProjects.map((project) => (
-                  <WorkThumb key={`${project.title}-typography`} project={project} tall />
+                  <WorkThumb key={`${project.title}-typography`} project={project} />
                 ))}
               </div>
-              <ArrowUpRight className="ml-auto mt-8 h-8 w-8 text-lime" />
+              <ArrowUpRight className="ml-auto mt-6 h-6 w-6 text-lime" />
             </div>
           </div>
         </section>
@@ -435,7 +444,7 @@ export function PortfolioSite() {
             ==================================================================== */}
         <section id="contact" className="deck-page bg-paper">
           <div className="min-h-screen p-8 md:p-14 lg:p-20 flex flex-col justify-between">
-            <div>
+            <div className="min-w-0">
               <div className="flex items-center justify-between">
                 <PageNumber>07</PageNumber>
                 <p className="section-kicker text-black">Get in Touch</p>
@@ -452,7 +461,7 @@ export function PortfolioSite() {
               </div>
 
               {/* Balanced 3-Column Contact Grid */}
-              <div className="mt-12 grid gap-8 md:grid-cols-3">
+              <div className="mt-12 grid gap-8 md:grid-cols-3 min-w-0">
                 {/* Column 1: Collaboration Services */}
                 <div className="rounded-2xl border border-neutral-300 bg-white/80 p-6 shadow-sm">
                   <p className="text-xs font-bold tracking-wider text-neutral-500 mb-3">
