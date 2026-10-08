@@ -319,10 +319,10 @@ export function PortfolioSite() {
             T-SHIRT / APPAREL MOCKUPS SECTION (Fixed Apparel Cards)
             ==================================================================== */}
         <section className="deck-page bg-paper">
-          <div className="mx-auto grid min-h-screen max-w-7xl items-center gap-10 p-8 md:p-12 lg:grid-cols-[0.45fr_0.55fr]">
-            <div className="min-w-0">
+          <div className="mx-auto grid min-h-screen max-w-7xl items-center gap-8 p-8 md:gap-12 md:p-12 lg:grid-cols-2">
+            <div className="min-w-0 pr-0 lg:pr-6">
               <PageNumber>04</PageNumber>
-              <h2 className="display-title mt-8 text-black">
+              <h2 className="display-title text-[clamp(2.3rem,4vw,4.2rem)] mt-8 text-black tracking-tight">
                 T-shirt
                 <br />
                 <span className="text-lime">Mockups</span>
@@ -370,11 +370,11 @@ export function PortfolioSite() {
             SOCIAL MEDIA DESIGNS SECTION (2x2 Balanced Grid - No Squishing)
             ==================================================================== */}
         <section className="deck-page deck-dark">
-          <div className="mx-auto grid min-h-screen max-w-7xl items-center gap-10 p-8 md:p-12 lg:grid-cols-[0.45fr_0.55fr]">
-            <div className="min-w-0 flex flex-col justify-between py-6">
+          <div className="mx-auto grid min-h-screen max-w-7xl items-center gap-8 p-8 md:gap-12 md:p-12 lg:grid-cols-2">
+            <div className="min-w-0 flex flex-col justify-between py-6 pr-0 lg:pr-6">
               <div>
                 <PageNumber dark>05</PageNumber>
-                <h2 className="display-title mt-8 text-white">
+                <h2 className="display-title text-[clamp(2.3rem,4vw,4.2rem)] mt-8 text-white tracking-tight">
                   Social Media
                   <br />
                   <span className="text-lime">Designs</span>
@@ -405,14 +405,14 @@ export function PortfolioSite() {
         </section>
 
         {/* ====================================================================
-            TYPOGRAPHY & ART SECTION (2x2 Balanced Grid - No Blowout)
+            TYPOGRAPHY & ART SECTION (2x2 Balanced Grid - No Truncation)
             ==================================================================== */}
         <section className="deck-page deck-dark">
-          <div className="mx-auto grid min-h-screen max-w-7xl items-center gap-10 p-8 md:p-12 lg:grid-cols-[0.45fr_0.55fr]">
-            <div className="min-w-0 flex flex-col justify-between py-6">
+          <div className="mx-auto grid min-h-screen max-w-7xl items-center gap-8 p-8 md:gap-12 md:p-12 lg:grid-cols-2">
+            <div className="min-w-0 flex flex-col justify-between py-6 pr-0 lg:pr-6">
               <PageNumber dark>06</PageNumber>
               <div className="my-auto">
-                <h2 className="display-title mt-8 text-white">
+                <h2 className="display-title text-[clamp(2.2rem,3.8vw,4.2rem)] mt-8 text-white tracking-tight">
                   Typography
                   <br />
                   <span className="text-lime">Art</span>
