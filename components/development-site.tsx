@@ -728,16 +728,33 @@ export function DevelopmentSite() {
         {/* Footer */}
         <footer className="border-t border-white/10 bg-[#06070a] px-5 py-8 md:px-12">
           <div className="mx-auto max-w-7xl flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-medium text-zinc-500">
-            <p>© {new Date().getFullYear()} Saumitra Misra. All rights reserved.</p>
-            <div className="flex items-center gap-6">
+            <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+              <p>© {new Date().getFullYear()} Saumitra Misra. All rights reserved.</p>
+              <span className="hidden sm:inline">•</span>
+              <p>Governed by IT Act, 2000 (India)</p>
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-4 text-zinc-400 font-semibold">
+              <Link href="/privacy" className="hover:text-rose-400 transition">
+                Privacy
+              </Link>
+              <Link href="/terms" className="hover:text-rose-400 transition">
+                Terms
+              </Link>
+              <Link href="/cookies" className="hover:text-rose-400 transition">
+                Cookies
+              </Link>
+              <Link href="/refunds" className="hover:text-rose-400 transition">
+                Refunds
+              </Link>
+              <span className="text-zinc-600">|</span>
               <Link href="/" className="hover:text-rose-400 transition">
-                Creative Portfolio
+                Creative
               </Link>
               <Link href="/database-cloud" className="hover:text-rose-400 transition">
                 Database &amp; Cloud
               </Link>
               <Link href="/projects" className="hover:text-rose-400 transition">
-                Design Archive
+                Archive
               </Link>
             </div>
           </div>

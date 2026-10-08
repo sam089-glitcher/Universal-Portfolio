@@ -32,7 +32,14 @@ export function ContactForm() {
           className="min-h-32 resize-none rounded-md border bg-background/70 p-4 text-sm outline-none transition placeholder:text-muted-foreground focus:ring-2 focus:ring-cyan-200"
           name="message"
           placeholder="Tell me about your project"
+          required
         />
+        <p className="text-xs text-muted-foreground leading-relaxed">
+          By submitting this form, you consent to communication regarding your project in accordance with our{" "}
+          <a href="/privacy" className="underline underline-offset-2 hover:text-foreground text-zinc-300">
+            Privacy Policy
+          </a>. No marketing emails or data sharing.
+        </p>
         <Button className="gap-2" type="submit">
           Start conversation <Send className="h-4 w-4" />
         </Button>

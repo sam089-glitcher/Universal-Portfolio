@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { CookieConsent } from "@/components/cookie-consent";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://saumitra-misra.vercel.app"),
@@ -40,7 +41,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className="bg-background font-sans text-foreground">{children}</body>
+      <body className="bg-background font-sans text-foreground">
+        {children}
+        <CookieConsent />
+      </body>
     </html>
   );
 }

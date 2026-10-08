@@ -512,12 +512,28 @@ export function PortfolioSite() {
             </div>
 
             {/* Bottom Footer Bar */}
-            <div className="mt-14 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-stone-300 pt-6 text-xs font-medium text-stone-600">
-              <span>© {new Date().getFullYear()} Saumitra Misra. All rights reserved.</span>
-              <span className="flex items-center gap-2">
-                <Globe2 className="h-4 w-4 text-lime" /> Visual Designer &amp; UI Specialist
-              </span>
-              <span>Available for worldwide remote collaborations</span>
+            <div className="mt-14 flex flex-col md:flex-row items-center justify-between gap-4 border-t border-stone-300 pt-6 text-xs font-medium text-stone-600">
+              <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+                <span>© {new Date().getFullYear()} Saumitra Misra. All rights reserved.</span>
+                <span className="hidden sm:inline">•</span>
+                <span className="flex items-center gap-1.5">
+                  <Globe2 className="h-3.5 w-3.5 text-lime" /> Based in India • IT Act 2000 Compliant
+                </span>
+              </div>
+              <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-semibold text-stone-700">
+                <Link href="/privacy" className="hover:text-black transition">
+                  Privacy Policy
+                </Link>
+                <Link href="/terms" className="hover:text-black transition">
+                  Terms &amp; Conditions
+                </Link>
+                <Link href="/cookies" className="hover:text-black transition">
+                  Cookie Policy
+                </Link>
+                <Link href="/refunds" className="hover:text-black transition">
+                  Refund Policy
+                </Link>
+              </div>
             </div>
           </div>
         </section>

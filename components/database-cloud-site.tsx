@@ -783,16 +783,33 @@ export function DatabaseCloudSite() {
         {/* Footer */}
         <footer className="border-t border-stone-300 bg-[#ede8df] px-5 py-8 md:px-12">
           <div className="mx-auto max-w-7xl flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-medium text-stone-600">
-            <p>© {new Date().getFullYear()} Saumitra Misra. All rights reserved.</p>
-            <div className="flex items-center gap-6">
+            <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+              <p>© {new Date().getFullYear()} Saumitra Misra. All rights reserved.</p>
+              <span className="hidden sm:inline">•</span>
+              <p>Governed by IT Act, 2000 (India)</p>
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-4 text-stone-700 font-semibold">
+              <Link href="/privacy" className="hover:text-amber-800 transition">
+                Privacy
+              </Link>
+              <Link href="/terms" className="hover:text-amber-800 transition">
+                Terms
+              </Link>
+              <Link href="/cookies" className="hover:text-amber-800 transition">
+                Cookies
+              </Link>
+              <Link href="/refunds" className="hover:text-amber-800 transition">
+                Refunds
+              </Link>
+              <span className="text-stone-400">|</span>
               <Link href="/" className="hover:text-amber-800 transition">
-                Creative Portfolio
+                Creative
               </Link>
               <Link href="/development" className="hover:text-amber-800 transition">
                 Software &amp; AI
               </Link>
               <Link href="/projects" className="hover:text-amber-800 transition">
-                Design Archive
+                Archive
               </Link>
             </div>
           </div>

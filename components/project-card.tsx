@@ -34,12 +34,17 @@ export function ProjectCard({
       viewport={{ once: true, amount: 0.15 }}
       whileHover={{ y: -8 }}
     >
-      <Link href={href} target="_blank" rel="noreferrer" className="absolute inset-0 z-10">
+      <Link
+        href={href}
+        target="_blank"
+        rel="noreferrer"
+        className="absolute inset-0 z-10 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
+      >
         <span className="sr-only">Open {title}</span>
       </Link>
       <Image
         src={image}
-        alt={title}
+        alt={`${title} - ${category} visual design by Saumitra Misra`}
         fill
         sizes={large ? "(min-width: 1024px) 50vw, 100vw" : "(min-width: 1024px) 25vw, 100vw"}
         className="object-cover transition duration-700 group-hover:scale-105 group-hover:opacity-90"

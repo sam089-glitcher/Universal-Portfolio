@@ -171,6 +171,41 @@ export function ProjectArchive() {
             )}
           </div>
         </section>
+
+        {/* Footer */}
+        <footer className="border-t border-white/10 bg-[#06070a] px-5 py-8 md:px-12">
+          <div className="mx-auto max-w-7xl flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-medium text-zinc-500">
+            <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+              <p>© {new Date().getFullYear()} Saumitra Misra. All rights reserved.</p>
+              <span className="hidden sm:inline">•</span>
+              <p>Governed by IT Act, 2000 (India)</p>
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-4 text-zinc-400 font-semibold">
+              <Link href="/privacy" className="hover:text-lime transition">
+                Privacy
+              </Link>
+              <Link href="/terms" className="hover:text-lime transition">
+                Terms
+              </Link>
+              <Link href="/cookies" className="hover:text-lime transition">
+                Cookies
+              </Link>
+              <Link href="/refunds" className="hover:text-lime transition">
+                Refunds
+              </Link>
+              <span className="text-zinc-600">|</span>
+              <Link href="/" className="hover:text-lime transition">
+                Creative
+              </Link>
+              <Link href="/development" className="hover:text-lime transition">
+                Software &amp; AI
+              </Link>
+              <Link href="/database-cloud" className="hover:text-lime transition">
+                Database &amp; Cloud
+              </Link>
+            </div>
+          </div>
+        </footer>
       </main>
     </>
   );

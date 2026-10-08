@@ -151,9 +151,14 @@ body {
   text-align: center;
 }
 
+:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 3px;
+}
+
 .section-kicker,
 .page-number {
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 950;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -175,9 +180,9 @@ body {
   padding: 0.8rem;
   background: linear-gradient(transparent, rgba(0, 0, 0, 0.86));
   color: #f3eee2;
-  font-size: 0.72rem;
-  font-weight: 900;
-  letter-spacing: 0.08em;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
